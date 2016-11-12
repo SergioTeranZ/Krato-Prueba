@@ -17,8 +17,7 @@
       </div>
       <div class="local-ranking" item-right>
       Ranking:
-      <ion-icon name="star"></ion-icon>
-      {{local.rating}}
+      <ion-icon  name="star" *ngFor="let i of getNumber(local.rating)"></ion-icon>
       </div>
     </button>
   </ion-list>

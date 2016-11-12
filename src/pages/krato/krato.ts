@@ -16,21 +16,33 @@ import 'rxjs/add/operator/map';
 export class KratoPage {
   selectedItem: any;
   comercios_json: any;
-
+  estrellas: string[];
+  ratings: any;
   constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-    //this.loadComercios();
+    
+    this.ratings = [];
 
     this.http.get('/comercios.json')
-    .map(res => res.json())
-    .subscribe(data => { this.comercios_json = data.comercios;});
+    .map(res => res.json().comercios)
+    .subscribe(data => { 
+      this.comercios_json = data; 
+
+      for(let i = 0; i <= this.comercios_json.length -1; i++){
+        this.comercios_json[i].rating = parseInt(this.comercios_json[i].rating);
+      }
+    });
+    
   }
 
 
   getNumber(numero){
-    console.log(numero)
-    return new Array[numero];
+    this.ratings = [];
+    for (let i = 0 ; i <= numero -1; i++){
+    this.ratings.push(i);
+    }
+    return this.ratings;
   }
 /*loadComercios(){
   this.ComerciosService.load()
