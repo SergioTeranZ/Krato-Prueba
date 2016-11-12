@@ -3,7 +3,7 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Detalles Comercio</ion-title>
+    <ion-title>Detalles {{selectedItem.nombre}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,7 +13,8 @@
     <ion-icon name="{{selectedItem.logo}}"></ion-icon>
     <div>
       Sector: <b>{{selectedItem.sector}}</b><br>
-      Rating: <b>{{selectedItem.rating}}</b><br>
+      Rating: <ion-icon  name="star" *ngFor="let i of getNumber(selectedItem.rating)"></ion-icon><ion-icon  name="star-outline" *ngFor="let i of getNumber(5 - selectedItem.rating)"></ion-icon>
+      <br>
       Descripcion: <b>{{selectedItem.descripcion}}</b><br>
     </div>
   </div>

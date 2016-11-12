@@ -12,12 +12,12 @@
     <button ion-item *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">
       <ion-icon name="{{local.logo}}" item-left></ion-icon>
       <b>{{local.nombre}}</b>
-      <div class="local-sector" item-left>
+      <br>
         {{local.sector}}
-      </div>
-      <div class="local-ranking" item-right>
+      
+      <br>
       <ion-icon  name="star" *ngFor="let i of getNumber(local.rating)"></ion-icon><ion-icon  name="star-outline" *ngFor="let i of getNumber(5 - local.rating)"></ion-icon>
-      </div>
+      
     </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>
