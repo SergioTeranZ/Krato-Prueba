@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!selectedItem">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalles Comercio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ <div *ngIf="selectedItem" class="selection">
+    <b>{{selectedItem.nombre}}</b>
+    <ion-icon name="{{selectedItem.logo}}"></ion-icon>
+    <div>
+      Sector: <b>{{selectedItem.sector}}</b><br>
+      Rating: <b>{{selectedItem.rating}}</b><br>
+      Descripcion: <b>{{selectedItem.descripcion}}</b><br>
+    </div>
+  </div>
+</ion-content>

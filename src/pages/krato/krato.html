@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Krato App</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">
+      <ion-icon name="{{local.logo}}" item-left></ion-icon>
+      {{local.nombre}}
+      <div class="local-sector" item-right>
+        {{local.sector}}
+      </div>
+      <div class="local-ranking" item-center>
+        Ranking: {{local.rating}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    Detalles: <b>{{selectedItem.nombre}}</b>
+  </div>
+</ion-content>
