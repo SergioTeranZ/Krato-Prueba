@@ -1,5 +1,5 @@
 {
-	"comercios":[
+	"comercios":
     {"nombre":"Rest 1", 
      "sector":"Restaurant",
      "logo":"basket",
@@ -69,4 +69,4 @@
      "rating":"3",
      "descripcion":"descripcion Mer 2"
     },
-]}
+}

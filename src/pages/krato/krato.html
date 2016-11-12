@@ -11,12 +11,14 @@
   <ion-list>
     <button ion-item *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">
       <ion-icon name="{{local.logo}}" item-left></ion-icon>
-      {{local.nombre}}
-      <div class="local-sector" item-right>
+      <b>{{local.nombre}}</b>
+      <div class="local-sector" item-left>
         {{local.sector}}
       </div>
-      <div class="local-ranking" item-center>
-        Ranking: {{local.rating}}
+      <div class="local-ranking" item-right>
+      Ranking:
+      <ion-icon name="star"></ion-icon>
+      {{local.rating}}
       </div>
     </button>
   </ion-list>
