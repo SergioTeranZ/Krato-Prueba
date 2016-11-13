@@ -7,11 +7,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #ddd;">
 <ion-grid>
   <!-- Barra de Busqueda -->
   <ion-row>
-    <ion-col width-50 offset-25>
+    <ion-col width-50 offset-25 style="text-align:center;">
       <ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="mientrasEscribe()" placeholder="Buscar local"></ion-searchbar>
           
       <div *ngIf="buscando" class="spinner-container">
@@ -103,13 +103,13 @@
   </ion-row>
 
   <!-- Ordenar lista -->
-  <ion-row>
+  <ion-row center>
       <ion-label style="text-align: right;">Ordenar:</ion-label>
-      <button ion-button only-icon (click)="orderMenor()">
+      <button ion-button style="padding: 1em;width: 4rem;height: 4rem;" (click)="orderMenor()">
         <ion-icon name="arrow-down" item-right></ion-icon>
       </button>
 
-      <button ion-button only-icon (click)="orderMayor()">
+      <button ion-button style="padding: 1em;width: 4rem;height: 4rem;" (click)="orderMayor()">
         <ion-icon name="arrow-up" item-right></ion-icon>
       </button>
   </ion-row>

@@ -84,7 +84,6 @@ export class KratoPage {
   }
 
   orderMenor(){
-    console.log(this.comercios_json);
     this.comercios_json.sort(function(a, b) {
       var ratingA = a.rating.toUpperCase(); // ignore upper and lowercase
       var ratingB = b.rating.toUpperCase(); // ignore upper and lowercase
@@ -101,7 +100,6 @@ export class KratoPage {
   } // Fin orderMayor
 
   orderMayor(){
-    console.log(this.comercios_json);
     this.comercios_json.sort(function(a, b) {
       var ratingA = a.rating.toUpperCase(); // ignore upper and lowercase
       var ratingB = b.rating.toUpperCase(); // ignore upper and lowercase

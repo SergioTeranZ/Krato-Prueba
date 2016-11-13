@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+//import { AngularFireModule } from 'angularfire2';
 
 /*
   Generated class for the ComerciosService provider.
@@ -8,17 +9,16 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
+//var firebaseObj = new Firebase("https://jose.firebaseio.com");
+
 @Injectable()
 export class ComerciosService {
 
   locales: any;
 
   constructor(public http: Http) {
-    /*this.http.get('/comercios.json').map(res => res.json().comercios).subscribe(data => { 
-      this.locales = data;
-      console.log('-----------\n'+this.locales+'\n-----------');
-      return this.locales;
-    });*/
+    //console.log(firebaseObj);
     
     this.locales = [
                     {"nombre":"Pizz 1", 
