@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 */
 @Component({
   templateUrl: 'krato.html',
-  providers:[],
+  providers:[ComerciosService],
 })
 export class KratoPage {
   // Mostrar detalles
@@ -20,6 +20,7 @@ export class KratoPage {
   
   // Leer de json
   comercios_json: any;
+  comercios_json2: any;
   
   // Crear arreglo de estrellas
   ratings: any;
@@ -36,6 +37,9 @@ export class KratoPage {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
+    //this.cargarComercios();
+    //console.log(this.comercios_json2);
+    
     // Barra de busqueda
     this.controlBusqueda = new FormControl();
   } // fin contructor
@@ -50,6 +54,15 @@ export class KratoPage {
         });    
   } // fin ViewDidLoad
 
+  /*
+  cargarComercios(){
+    this.ComerciosService.cargar()
+    .then(data => { 
+      this.comercios_json2 = data;
+    });
+  }
+  */
+  
   mientrasEscribe(){
       this.buscando = true;
   } // fin mientrasEscribe

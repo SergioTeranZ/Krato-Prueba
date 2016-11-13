@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/bundles/Rx';
 //import { AngularFireModule } from 'angularfire2';
 
 /*
@@ -16,10 +17,10 @@ import 'rxjs/add/operator/map';
 export class ComerciosService {
 
   locales: any;
+  localesJS: any;
 
   constructor(public http: Http) {
-    //console.log(firebaseObj);
-    
+
     this.locales = [
                     {"nombre":"Pizz 1", 
                      "sector":"Pizzeria",
@@ -105,6 +106,13 @@ export class ComerciosService {
                      "descripcion":"descripcion Mer 2"
                     }
     ] // fin locales
+    
+    this.localesJS = [];
+    
+    this.http.get('/comercios.json')
+      .subscribe(res => {this.localesJS = res.json().comercios;console.log(">"+this.localesJS);});
+    console.log(">>"+this.localesJS);
+
   } // Fin constructor
 
   filtroBusqueda(termino){
@@ -116,6 +124,6 @@ export class ComerciosService {
   filtroSector(sector){
     return this.locales.filter((local) =>{
       return local.sector.toLowerCase().indexOf(sector.toLowerCase()) > -1;
-    }); // fin filter
+    });
   } // fin filtroSector
 }

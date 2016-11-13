@@ -4,9 +4,15 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from 'ionic-native';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
 import { KratoPage } from '../pages/krato/krato';
+
+//import * as firebase from 'firebase';
+import {  FIREBASE_PROVIDERS, 
+          defaultFirebase,
+          AngularFire,
+          AuthMethods,
+          AuthProviders,
+          firebaseAuthConfig} from 'angularfire2';
 
 
 @Component({
@@ -19,19 +25,27 @@ export class MyApp {
   rootPage: any = KratoPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(
-    public platform: Platform,
-    public menu: MenuController
-  ) {
+  constructor(public platform: Platform,public menu: MenuController){
+    
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCeQdNeNM-ppKKdDfMf_Bn67fhzhi_1GQ4",
+      authDomain: "angularprueba-55b94.firebaseapp.com",
+      databaseURL: "https://angularprueba-55b94.firebaseio.com",
+      storageBucket: "angularprueba-55b94.appspot.com",
+      messagingSenderId: "120586352780"
+    };
+    firebase.initializeApp(config);
+
     this.initializeApp();
 
-    // set our app's pages
+    // Arreglo de pagians en la aplicacion
     this.pages = [
-      { title: 'Hello Sergio', component: HelloIonicPage },
-      { title: 'Krato App', component: KratoPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Krato App', component: KratoPage }
     ];
-  }
+
+  } // fin constructor
 
   initializeApp() {
     this.platform.ready().then(() => {
