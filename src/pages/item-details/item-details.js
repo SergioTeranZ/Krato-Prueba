@@ -16,6 +16,13 @@ export var ItemDetailsPage = (function () {
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('local');
     }
+    ItemDetailsPage.prototype.getNumber = function (numero) {
+        this.ratings = [];
+        for (var i = 0; i <= numero - 1; i++) {
+            this.ratings.push(i);
+        }
+        return this.ratings;
+    };
     ItemDetailsPage = __decorate([
         Component({
             templateUrl: 'item-details.html'

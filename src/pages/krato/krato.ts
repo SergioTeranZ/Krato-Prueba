@@ -18,52 +18,51 @@ import 'rxjs/add/operator/map';
 export class KratoPage {
   // Mostrar detalles
   selectedItem: any;
+  
   // Leer de json
   comercios_json: any;
+  
   // Crear arreglo de estrellas
   ratings: any;
+
   // Barra de Busqueda
   termino: string= '';
+  sector: string= '';
   controlBusqueda: FormControl;
-  searching: any = false;
+  controlSector: FormControl;
+  buscando: any = false;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public ComerciosService: ComerciosService) {
+    
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-    // Inicializo arreglo de estrellas
-    this.ratings = [];
 
+    // Barra de busqueda
     this.controlBusqueda = new FormControl();
-    /*this.http.get('/comercios.json')
-    .map(res => res.json().comercios)
-    .subscribe(data => { 
-      this.comercios_json = data; 
-
-      for(let i = 0; i <= this.comercios_json.length -1; i++){
-        this.comercios_json[i].rating = parseInt(this.comercios_json[i].rating);
-      }
-    });*/
-
   }
   
   ionViewDidLoad() {
-    this.setFilteredItems();
+    this.localesFiltrados();
+    this.localesFiltradosSector(this.termino);
 
     this.controlBusqueda.valueChanges.debounceTime(700).subscribe(search => {
-            this.searching = false;
-            this.setFilteredItems();
+            this.buscando = false;
+            this.localesFiltrados();
         });    
-  }
+  } // fin ViewDidLoad
 
-    onSearchInput(){
-        this.searching = true;
-    }
-  
-  setFilteredItems() {
-    this.comercios_json = this.ComerciosService.filterItems(this.termino);
-  }
+  mientrasEscribe(){
+      this.buscando = true;
+  } // fin mientrasEscribe
+
+  localesFiltrados() {
+    this.comercios_json = this.ComerciosService.filtroBusqueda(this.termino);
+  } // fin localesFiltrados
     
-
+  localesFiltradosSector(termino) {
+    this.localesFiltrados();
+    this.comercios_json = this.ComerciosService.filtroSector(termino);
+  } // fin localesFiltrados
 
   getNumber(numero){
     this.ratings = [];

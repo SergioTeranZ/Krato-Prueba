@@ -8,45 +8,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { ComerciosService } from '../../providers/comercios-service';
+import 'rxjs/add/operator/debounceTime';
+/*
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+*/
 export var KratoPage = (function () {
-    function KratoPage(http, navCtrl, navParams) {
-        var _this = this;
-        this.http = http;
+    function KratoPage(navCtrl, navParams, ComerciosService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.ComerciosService = ComerciosService;
+        // Barra de Busqueda
+        this.termino = '';
+        this.searching = false;
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('item');
-        //this.loadComercios();
-        this.http.get('/comercios.json')
-            .map(function (res) { return res.json().comercios; })
-            .subscribe(function (data) {
-            _this.comercios_json = data;
-            //for (let i =0 ; i <=this.comercios_json.length;i++){
-            //  console.log(this.comercios_json[i].rating);
-            //}
-            console.log(_this.comercios_json);
-            for (var i = 0; i <= _this.comercios_json.length - 1; i++) {
-                estrellas = Array(parseInt(_this.comercios_json[i].rating));
-                _this.comercios_json[i].rating = parseInt(_this.comercios_json[i].rating);
-            }
+        // Inicializo arreglo de estrellas
+        this.ratings = [];
+        this.controlBusqueda = new FormControl();
+        /*this.http.get('/comercios.json')
+        .map(res => res.json().comercios)
+        .subscribe(data => {
+          this.comercios_json = data;
+    
+          for(let i = 0; i <= this.comercios_json.length -1; i++){
+            this.comercios_json[i].rating = parseInt(this.comercios_json[i].rating);
+          }
+        });*/
+    }
+    KratoPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.mostrarLocalesFiltrados();
+        this.controlBusqueda.valueChanges.debounceTime(700).subscribe(function (search) {
+            _this.searching = false;
+            _this.setFilteredItems();
         });
-    }
-    KratoPage.prototype.getNumber = function (numero) {
-        console.log(numero);
-        return new Array[numero];
     };
-    /*loadComercios(){
-      this.ComerciosService.load()
-      .then(data => {
-        this.comercios_json = data;
-      });
-    }
-    */
+    KratoPage.prototype.mientrasEscribe = function () {
+        this.searching = true;
+    };
+    KratoPage.prototype.setFilteredItems = function () {
+        this.comercios_json = this.ComerciosService.filtroBusqueda(this.termino);
+    };
+    KratoPage.prototype.getNumber = function (numero) {
+        this.ratings = [];
+        for (var i = 0; i <= numero - 1; i++) {
+            this.ratings.push(i);
+        }
+        return this.ratings;
+    };
     KratoPage.prototype.itemTapped = function (event, local) {
         this.navCtrl.push(ItemDetailsPage, {
             local: local
@@ -55,9 +69,9 @@ export var KratoPage = (function () {
     KratoPage = __decorate([
         Component({
             templateUrl: 'krato.html',
-            providers: [ComerciosService],
+            providers: [],
         }), 
-        __metadata('design:paramtypes', [Http, NavController, NavParams])
+        __metadata('design:paramtypes', [NavController, NavParams, ComerciosService])
     ], KratoPage);
     return KratoPage;
 }());

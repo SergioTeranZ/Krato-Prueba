@@ -9,11 +9,43 @@
 
 <ion-content>
 
-<ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="onSearchInput()"placeholder="Buscar local"></ion-searchbar>
-    <div *ngIf="searching" class="spinner-container">
+<!-- Barra de Busqueda -->
+<ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="mientrasEscribe()" placeholder="Buscar local"></ion-searchbar>
+    <div *ngIf="buscando" class="spinner-container">
         <ion-spinner></ion-spinner>
     </div>
 
+<!-- Linsk por sectores -->
+
+<button (click)="localesFiltradosSector('Pizzeria')" clear>
+  <ion-icon class="menu-icon" name="pizza"></ion-icon>
+</button>
+
+<button (click)="localesFiltradosSector('Licoreria')" clear>
+  <ion-icon class="menu-icon" name="beer"></ion-icon>
+</button>
+
+<button (click)="localesFiltradosSector('Libreria')" clear>
+  <ion-icon class="menu-icon" name="book"></ion-icon>
+</button>
+
+<button (click)="localesFiltradosSector('Farmacia')" clear>
+  <ion-icon class="menu-icon" name="medkit"></ion-icon>
+</button>
+
+<button (click)="localesFiltradosSector('Ropa')" clear>
+  <ion-icon class="menu-icon" name="bowtie"></ion-icon>
+</button>
+
+<button (click)="localesFiltradosSector('Mercado')" clear>
+  <ion-icon class="menu-icon" name="basket"></ion-icon>
+</button>
+
+<button (click)="localesFiltrados()" clear>
+  <ion-icon class="menu-icon" name="globe"></ion-icon>
+</button>
+
+<!-- Lista de locales -->
   <ion-list>
     <button ion-item *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">
       <!-- <ion-icon name="{{local.logo}}" item-left></ion-icon> -->

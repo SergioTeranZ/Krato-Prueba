@@ -14,16 +14,8 @@ export class ComerciosService {
   locales: any;
 
   constructor(public http: Http) {
-    console.log('Hello ComerciosService Provider');
-
     /*this.http.get('/comercios.json').map(res => res.json().comercios).subscribe(data => { 
-      
       this.locales = data;
-
-      for(let i = 0; i <= this.locales.length -1; i++){
-        this.locales[i].rating = parseInt(this.locales[i].rating);
-      }
-
       console.log('-----------\n'+this.locales+'\n-----------');
       return this.locales;
     });*/
@@ -113,13 +105,18 @@ export class ComerciosService {
                      "descripcion":"descripcion Mer 2"
                     }
     ] // fin locales
-
   } // Fin constructor
 
-  filterItems(termino){
+  filtroBusqueda(termino){
     return this.locales.filter((local) => {
-      return local.nombre.toLowerCase().indexOf(termino.toLowerCase()) > -1;
+      return local.nombre.toLowerCase().indexOf(termino.toLowerCase()) > -1 || local.descripcion.toLowerCase().indexOf(termino.toLowerCase()) > -1;
     });
-  }
+  } // Fin filtroBusqueda
 
+  filtroSector(sector){
+    console.log(sector);
+    return this.locales.filter((local) =>{
+      return local.sector.toLowerCase().indexOf(sector.toLowerCase()) > -1;
+    }); // fin filter
+  } // fin filtroSector
 }
