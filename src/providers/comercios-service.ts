@@ -32,7 +32,7 @@ export class ComerciosService {
                     {"nombre":"Pizz 1", 
                      "sector":"Pizzeria",
                      "logo":"pizza",
-                     "rating":"1",
+                     "rating":"5",
                      "descripcion":"descripcion Rest 1"
                     },
 
