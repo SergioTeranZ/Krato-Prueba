@@ -24,7 +24,7 @@ export class ComerciosService {
                     {"nombre":"Pizz 1", 
                      "sector":"Pizzeria",
                      "logo":"pizza",
-                     "rating":"5",
+                     "rating":"1",
                      "descripcion":"descripcion Rest 1"
                     },
 
@@ -114,7 +114,6 @@ export class ComerciosService {
   } // Fin filtroBusqueda
 
   filtroSector(sector){
-    console.log(sector);
     return this.locales.filter((local) =>{
       return local.sector.toLowerCase().indexOf(sector.toLowerCase()) > -1;
     }); // fin filter

@@ -9,43 +9,99 @@
 
 <ion-content>
 
-<!-- Barra de Busqueda -->
-<ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="mientrasEscribe()" placeholder="Buscar local"></ion-searchbar>
-    <div *ngIf="buscando" class="spinner-container">
-        <ion-spinner></ion-spinner>
-    </div>
+  <!-- Barra de Busqueda -->
+  <ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="mientrasEscribe()" placeholder="Buscar local"></ion-searchbar>
+      
+  <div *ngIf="buscando" class="spinner-container">
+      <ion-spinner></ion-spinner>
+  </div>
 
-<!-- Linsk por sectores -->
+  <!-- Linsk por sectores -->
+  <div class="row" center>
+    <button ion-button (click)="localesFiltradosSector('Pizzeria')" clear>
+    
+      <span *ngIf="sector =='Pizzeria'" >  
+        <ion-icon style="font-size:5em;" name="pizza"></ion-icon> Pizzerias
+      </span>
+      <span *ngIf="sector !='Pizzeria'" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="pizza"></ion-icon> Pizzerias
+      </span>
+    
+    </button>
 
-<button (click)="localesFiltradosSector('Pizzeria')" clear>
-  <ion-icon class="menu-icon" name="pizza"></ion-icon>
-</button>
+    <button ion-button (click)="localesFiltradosSector('Licoreria')" clear>
+      
+      <span *ngIf="sector =='Licoreria'">  
+        <ion-icon style="font-size:5em;" name="beer"></ion-icon> Licorerias
+      </span>
+      <span *ngIf="sector !='Licoreria'" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="beer"></ion-icon> Licorerias
+      </span>
 
-<button (click)="localesFiltradosSector('Licoreria')" clear>
-  <ion-icon class="menu-icon" name="beer"></ion-icon>
-</button>
+    </button>
 
-<button (click)="localesFiltradosSector('Libreria')" clear>
-  <ion-icon class="menu-icon" name="book"></ion-icon>
-</button>
+    <button ion-button (click)="localesFiltradosSector('Libreria')" clear>
+      
+      <span *ngIf="sector =='Libreria'">  
+        <ion-icon style="font-size:5em;" name="book"></ion-icon> Librerias
+      </span>
+      <span *ngIf="sector !='Libreria'" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="book"></ion-icon> Librerias
+      </span>
+    
+    </button>
 
-<button (click)="localesFiltradosSector('Farmacia')" clear>
-  <ion-icon class="menu-icon" name="medkit"></ion-icon>
-</button>
+    <button ion-button (click)="localesFiltradosSector('Farmacia')" clear>
+    
+      <span *ngIf="sector =='Farmacia'">  
+        <ion-icon style="font-size:5em;" name="medkit"></ion-icon> Farmacias
+      </span>
+      <span *ngIf="sector !='Farmacia'" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="medkit"></ion-icon> Farmacias
+      </span>
+    
+    </button>
 
-<button (click)="localesFiltradosSector('Ropa')" clear>
-  <ion-icon class="menu-icon" name="bowtie"></ion-icon>
-</button>
+    <button ion-button (click)="localesFiltradosSector('Ropa')" clear>
 
-<button (click)="localesFiltradosSector('Mercado')" clear>
-  <ion-icon class="menu-icon" name="basket"></ion-icon>
-</button>
+      <span *ngIf="sector =='Ropa'">  
+        <ion-icon style="font-size:5em;" name="bowtie"></ion-icon> Ropa
+      </span>
+      <span *ngIf="sector !='Ropa'" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="bowtie"></ion-icon> Ropa
+      </span>
 
-<button (click)="localesFiltrados()" clear>
-  <ion-icon class="menu-icon" name="globe"></ion-icon>
-</button>
+    </button>
 
-<!-- Lista de locales -->
+    <button ion-button (click)="localesFiltradosSector('Mercado')" clear>
+
+      <span *ngIf="sector =='Mercado'">  
+        <ion-icon style="font-size:5em;" name="basket"></ion-icon> Mercados
+      </span>
+      <span *ngIf="sector !='Mercado'" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="basket"></ion-icon> Mercados
+      </span>
+
+    </button>
+
+    <button ion-button (click)="localesFiltrados()" clear>
+
+      <span *ngIf="sector ==''">  
+        <ion-icon style="font-size:5em;" name="globe"></ion-icon> Todo
+      </span>
+      <span *ngIf="sector !=''" style="color:#3e3e3e">  
+        <ion-icon style="font-size:5em;" name="globe"></ion-icon> Todo
+      </span>
+
+    </button>
+  </div>
+
+  <!-- <button (click)="orderMayor()"> -->
+  <button ion-item>
+    <ion-icon name="arrow-up" item-right></ion-icon>
+  </button>
+
+  <!-- Lista de locales -->
   <ion-list>
     <button ion-item *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">
       <!-- <ion-icon name="{{local.logo}}" item-left></ion-icon> -->

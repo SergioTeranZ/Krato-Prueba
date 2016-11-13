@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, reorderArray } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { ComerciosService } from '../../providers/comercios-service'
@@ -39,7 +38,7 @@ export class KratoPage {
 
     // Barra de busqueda
     this.controlBusqueda = new FormControl();
-  }
+  } // fin contructor
   
   ionViewDidLoad() {
     this.localesFiltrados();
@@ -56,13 +55,16 @@ export class KratoPage {
   } // fin mientrasEscribe
 
   localesFiltrados() {
+    this.sector = '';
     this.comercios_json = this.ComerciosService.filtroBusqueda(this.termino);
   } // fin localesFiltrados
     
   localesFiltradosSector(termino) {
     this.localesFiltrados();
+    this.sector = termino;
+    console.log(this.sector);
     this.comercios_json = this.ComerciosService.filtroSector(termino);
-  } // fin localesFiltrados
+  } // fin localesFiltradosSector
 
   getNumber(numero){
     this.ratings = [];
@@ -76,5 +78,9 @@ export class KratoPage {
     this.navCtrl.push(ItemDetailsPage, {
       local: local
     });
+  } // Fin itemTapped
+
+  reorderItems(indexes){
+      this.comercios_json = reorderArray(this.comercios_json, indexes);
   }
 }
