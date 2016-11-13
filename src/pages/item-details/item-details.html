@@ -8,15 +8,27 @@
 </ion-header>
 
 <ion-content>
- <div *ngIf="selectedItem" class="selection">
-    logo: <ion-icon name="{{selectedItem.logo}}"></ion-icon>
-    <br>
-    <b>{{selectedItem.nombre}}</b>
-    <div>
-      Sector: <b>{{selectedItem.sector}}</b><br>
-      Rating: <ion-icon  name="star" *ngFor="let i of getNumber(selectedItem.rating)"></ion-icon><ion-icon  name="star-outline" *ngFor="let i of getNumber(5 - selectedItem.rating)"></ion-icon>
-      <br>
-      Descripcion: <b>{{selectedItem.descripcion}}</b><br>
-    </div>
-  </div>
+  <ion-row>
+  <ion-col width-50 offset-25>
+  <ion-card *ngIf="selectedItem" class="selection">
+  <ion-card-content>
+    <ion-card-title>
+      <ion-icon name="{{selectedItem.logo}}" item-left></ion-icon>
+      {{selectedItem.nombre}}
+      <ion-icon  name="star" *ngFor="let i of getNumber(selectedItem.rating)"></ion-icon><ion-icon  name="star-outline" *ngFor="let i of getNumber(5 - selectedItem.rating)"></ion-icon>
+    </ion-card-title>
+
+    <p>
+    <span ion-item style="color:#7c7c7c;">      
+    {{selectedItem.sector}}
+    </span>
+    </p>
+<hr>
+    <span ion-item>      
+      {{selectedItem.descripcion}}
+    </span>
+  </ion-card-content>
+  </ion-card>
+  </ion-col>
+  </ion-row>
 </ion-content>
