@@ -10,30 +10,116 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class ComerciosService {
-	data: any;
 
-load() {
-  if (this.data) {
-    // already loaded data
-    return Promise.resolve(this.data);
-  }
-
-  // don't have the data yet
-  return new Promise(resolve => {
-    // We're using Angular HTTP provider to request the data,
-    // then on the response, it'll map the JSON data to a parsed JS object.
-    // Next, we process the data and resolve the promise with the new data.
-    this.http.get('../../providers/comercios.json')
-      .map(res => res.json())
-      .subscribe(data => {
-		  this.data = data.comercios;
-		  resolve(this.data);
-		});
-  });
-}
+  locales: any;
 
   constructor(public http: Http) {
     console.log('Hello ComerciosService Provider');
+
+    /*this.http.get('/comercios.json').map(res => res.json().comercios).subscribe(data => { 
+      
+      this.locales = data;
+
+      for(let i = 0; i <= this.locales.length -1; i++){
+        this.locales[i].rating = parseInt(this.locales[i].rating);
+      }
+
+      console.log('-----------\n'+this.locales+'\n-----------');
+      return this.locales;
+    });*/
+    
+    this.locales = [
+                    {"nombre":"Pizz 1", 
+                     "sector":"Pizzeria",
+                     "logo":"pizza",
+                     "rating":"1",
+                     "descripcion":"descripcion Rest 1"
+                    },
+
+                    {"nombre":"Pizz 2", 
+                     "sector":"Pizzeria",
+                     "logo":"pizza",
+                     "rating":"5",
+                     "descripcion":"descripcion Rest 2"
+                    },
+
+                    {"nombre":"Lic 1", 
+                     "sector":"Licoreria",
+                     "logo":"beer",
+                     "rating":"1",
+                     "descripcion":"descripcion Lic 1"
+                    },
+
+                    {"nombre":"Lic 2", 
+                     "sector":"Licoreria",
+                     "logo":"beer",
+                     "rating":"2",
+                     "descripcion":"descripcion Lic 2"
+                    },
+
+                    {"nombre":"Lib 1", 
+                     "sector":"Libreria",
+                     "logo":"book",
+                     "rating":"3",
+                     "descripcion":"descripcion Lib 1"
+                    },
+
+                    {"nombre":"Lib 2", 
+                     "sector":"Libreria",
+                     "logo":"book",
+                     "rating":"1",
+                     "descripcion":"descripcion Lib 2"
+                    },
+
+                    {"nombre":"Far 1", 
+                     "sector":"Farmacia",
+                     "logo":"medkit",
+                     "rating":"4",
+                     "descripcion":"descripcion Far 1"
+                    },   
+
+                    {"nombre":"Far 2", 
+                     "sector":"Farmacia",
+                     "logo":"medkit",
+                     "rating":"4",
+                     "descripcion":"descripcion Far 2"
+                    },       
+
+                    {"nombre":"Rop 1", 
+                     "sector":"Ropa",
+                     "logo":"bowtie",
+                     "rating":"1",
+                     "descripcion":"descripcion Rop 1"
+                    },
+
+                    {"nombre":"Rop 2", 
+                     "sector":"Ropa",
+                     "logo":"bowtie",
+                     "rating":"3",
+                     "descripcion":"descripcion Rop 2"
+                    },
+
+                    {"nombre":"Mer 1", 
+                     "sector":"Mercado",
+                     "logo":"basket",
+                     "rating":"4",
+                     "descripcion":"descripcion Mer 1"
+                    },
+
+                    {"nombre":"Mer 2", 
+                     "sector":"Mercado",
+                     "logo":"basket",
+                     "rating":"5",
+                     "descripcion":"descripcion Mer 2"
+                    }
+    ] // fin locales
+
+  } // Fin constructor
+
+  filterItems(termino){
+    return this.locales.filter((local) => {
+      return local.nombre.toLowerCase().indexOf(termino.toLowerCase()) > -1;
+    });
   }
 
 }
