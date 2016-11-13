@@ -9,11 +9,11 @@
 
 <ion-content>
 
-<ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="onSearchInput()"></ion-searchbar>
+<ion-searchbar [(ngModel)]="termino" [formControl]="controlBusqueda" (ionInput)="onSearchInput()"placeholder="Buscar local"></ion-searchbar>
     <div *ngIf="searching" class="spinner-container">
         <ion-spinner></ion-spinner>
     </div>
-    
+
   <ion-list>
     <button ion-item *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">
       <!-- <ion-icon name="{{local.logo}}" item-left></ion-icon> -->
