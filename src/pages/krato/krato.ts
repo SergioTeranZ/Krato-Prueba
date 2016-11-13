@@ -62,7 +62,6 @@ export class KratoPage {
   localesFiltradosSector(termino) {
     this.localesFiltrados();
     this.sector = termino;
-    console.log(this.sector);
     this.comercios_json = this.ComerciosService.filtroSector(termino);
   } // fin localesFiltradosSector
 
@@ -83,4 +82,39 @@ export class KratoPage {
   reorderItems(indexes){
       this.comercios_json = reorderArray(this.comercios_json, indexes);
   }
+
+  orderMenor(){
+    console.log(this.comercios_json);
+    this.comercios_json.sort(function(a, b) {
+      var ratingA = a.rating.toUpperCase(); // ignore upper and lowercase
+      var ratingB = b.rating.toUpperCase(); // ignore upper and lowercase
+      if (ratingA < ratingB) {
+        return -1;
+      }
+      if (ratingA > ratingB) {
+        return 1;
+      }
+
+      // names must be equal
+      return 0;
+    })
+  } // Fin orderMayor
+
+  orderMayor(){
+    console.log(this.comercios_json);
+    this.comercios_json.sort(function(a, b) {
+      var ratingA = a.rating.toUpperCase(); // ignore upper and lowercase
+      var ratingB = b.rating.toUpperCase(); // ignore upper and lowercase
+      if (ratingA > ratingB) {
+        return -1;
+      }
+      if (ratingA < ratingB) {
+        return 1;
+      }
+
+      // names must be equal
+      return 0;
+    })
+  } // Fin orderMayor
+
 }

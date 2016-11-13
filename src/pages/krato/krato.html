@@ -96,8 +96,13 @@
     </button>
   </div>
 
-  <!-- <button (click)="orderMayor()"> -->
-  <button ion-item>
+
+  <ion-label>Ordenar:</ion-label>
+  <button (click)="orderMenor()">
+    <ion-icon name="arrow-down" item-right></ion-icon>
+  </button>
+
+  <button (click)="orderMayor()">
     <ion-icon name="arrow-up" item-right></ion-icon>
   </button>
 
