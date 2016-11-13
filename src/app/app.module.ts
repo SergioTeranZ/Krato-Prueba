@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { KratoPage } from '../pages/krato/krato';
 
 import {ComerciosService} from '../providers/comercios-service';
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 // Import the AF2 Module
 import { FIREBASE_PROVIDERS, defaultFirebase,AngularFire,AuthMethods,AuthProviders,firebaseAuthConfig} from 'angularfire2';
