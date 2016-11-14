@@ -6,8 +6,9 @@
 
 <ion-content style="background-color: #ddd;">
 <ion-grid>
-
-  <div *ngFor="let c of comerPrueba | async"> {{ c.nombre }}</div>
+  <!-- LA LINEA DE ABAJO FUNCIONA -->
+  <!-- <div *ngFor="let c of comerPrueba | async"> {{ c.nombre }}</div> -->
+  
   <!-- Barra de Busqueda -->
   <ion-row>
     <ion-col width-50 offset-25 style="text-align:center;">
@@ -115,7 +116,7 @@
 
   <!-- Lista de locales -->
   <ion-list>
-    <ion-card *ngFor="let local of comercios_json" (click)="itemTapped($event, local)">  
+    <ion-card *ngFor="let local of comerPrueba | async" (click)="itemTapped($event, local)">  
     <!-- <button > -->
     <ion-card-content>
     <ion-card-title>
