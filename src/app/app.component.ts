@@ -6,14 +6,7 @@ import { StatusBar } from 'ionic-native';
 
 import { KratoPage } from '../pages/krato/krato';
 
-//import * as firebase from 'firebase';
-/*import {  FIREBASE_PROVIDERS, 
-          defaultFirebase,
-          AngularFire,
-          AuthMethods,
-          AuthProviders,
-          firebaseAuthConfig} from 'angularfire2';*/
-
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 
 @Component({
   templateUrl: 'app.html'
@@ -25,19 +18,8 @@ export class MyApp {
   rootPage: any = KratoPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform,public menu: MenuController){
+  constructor(public platform: Platform,public menu: MenuController, private af: AngularFire){
     
-
-    // Initialize Firebase
-   /* var config = {
-      apiKey: "AIzaSyCeQdNeNM-ppKKdDfMf_Bn67fhzhi_1GQ4",
-      authDomain: "angularprueba-55b94.firebaseapp.com",
-      databaseURL: "https://angularprueba-55b94.firebaseio.com",
-      storageBucket: "angularprueba-55b94.appspot.com",
-      messagingSenderId: "120586352780"
-    };
-    firebase.initializeApp(config);*/
-
     this.initializeApp();
 
     // Arreglo de pagians en la aplicacion

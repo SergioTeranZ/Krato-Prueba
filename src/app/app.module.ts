@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-//import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { KratoPage } from '../pages/krato/krato';
 
 import {ComerciosService} from '../providers/comercios-service';
-//import { AngularFireModule } from 'angularfire2/index';
+// Import de firebase
+import { AngularFireModule } from 'angularfire2/index';
+import { firebaseConfig } from '../enviroment/firebase.config';
 
-// Import the AF2 Module
-//import { firebaseConfig } from '../enviroment/firebase.config';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import {ComerciosService} from '../providers/comercios-service';
 
   imports: [
     IonicModule.forRoot(MyApp),
-    //AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
 
   bootstrap: [IonicApp],

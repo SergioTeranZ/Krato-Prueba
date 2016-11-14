@@ -20,7 +20,6 @@ export class KratoPage {
   
   // Leer de json
   comercios_json: any;
-  comercios_json2: any;
   
   // Crear arreglo de estrellas
   ratings: any;
@@ -29,19 +28,15 @@ export class KratoPage {
   termino: string= '';
   sector: string= '';
   controlBusqueda: FormControl;
-  controlSector: FormControl;
   buscando: any = false;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public ComerciosService: ComerciosService) {
     
     // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    //this.cargarComercios();
-    //console.log(this.comercios_json2);
-    
+    this.selectedItem = navParams.get('item');  
     // Barra de busqueda
     this.controlBusqueda = new FormControl();
+  
   } // fin contructor
   
   ionViewDidLoad() {
@@ -49,19 +44,10 @@ export class KratoPage {
     this.localesFiltradosSector(this.termino);
 
     this.controlBusqueda.valueChanges.debounceTime(700).subscribe(search => {
-            this.buscando = false;
-            this.localesFiltrados();
-        });    
+      this.buscando = false;
+      this.localesFiltrados();
+    });    
   } // fin ViewDidLoad
-
-  /*
-  cargarComercios(){
-    this.ComerciosService.cargar()
-    .then(data => { 
-      this.comercios_json2 = data;
-    });
-  }
-  */
   
   mientrasEscribe(){
       this.buscando = true;
@@ -98,8 +84,8 @@ export class KratoPage {
 
   orderMenor(){
     this.comercios_json.sort(function(a, b) {
-      var ratingA = a.rating.toUpperCase(); // ignore upper and lowercase
-      var ratingB = b.rating.toUpperCase(); // ignore upper and lowercase
+      var ratingA = a.rating.toUpperCase();
+      var ratingB = b.rating.toUpperCase();
       if (ratingA < ratingB) {
         return -1;
       }
@@ -114,8 +100,8 @@ export class KratoPage {
 
   orderMayor(){
     this.comercios_json.sort(function(a, b) {
-      var ratingA = a.rating.toUpperCase(); // ignore upper and lowercase
-      var ratingB = b.rating.toUpperCase(); // ignore upper and lowercase
+      var ratingA = a.rating.toUpperCase();
+      var ratingB = b.rating.toUpperCase();
       if (ratingA > ratingB) {
         return -1;
       }

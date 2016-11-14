@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
-//import { AngularFireModule } from 'angularfire2';
+// Import de firebase
+//import { AngularFireModule } from 'angularfire2/index';
+import { firebaseConfig } from '../enviroment/firebase.config';
+import {AngularFire} from "angularfire2";
 
 /*
   Generated class for the ComerciosService provider.
@@ -11,15 +14,14 @@ import 'rxjs/Rx';
   for more info on providers and Angular 2 DI.
 */
 
-//var firebaseObj = new Firebase("https://jose.firebaseio.com");
-
 @Injectable()
 export class ComerciosService {
 
   locales: any;
   localesJS: any;
+  root: any;
 
-  constructor(public http: Http) {
+  constructor(public http: Http,private af: AngularFire) {
 
     this.locales = [
                     {"nombre":"Pizz 1", 
@@ -106,12 +108,16 @@ export class ComerciosService {
                      "descripcion":"descripcion Mer 2"
                     }
     ] // fin locales
-    
-    this.localesJS = [];
-    
-    this.http.get('/comercios.json')
-      .subscribe(res => {this.localesJS = res.json().comercios});
+    var prueba;
+    this.root = firebase.
+    database().
+    ref('comercios').
+    on('value',function(snap){
+        prueba = snap.val();
+      });
 
+    console.log(prueba);
+    
   } // Fin constructor
 
   filtroBusqueda(termino){
