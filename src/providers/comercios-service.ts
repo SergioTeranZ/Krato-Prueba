@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response} from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 //import { AngularFireModule } from 'angularfire2';
@@ -111,7 +111,6 @@ export class ComerciosService {
     
     this.http.get('/comercios.json')
       .subscribe(res => {this.localesJS = res.json().comercios});
-    console.log(">>"+this.localesJS);
 
   } // Fin constructor
 

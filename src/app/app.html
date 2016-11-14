@@ -2,7 +2,7 @@
 
   <ion-header>
     <ion-toolbar>
-      <ion-title>Paginas</ion-title>
+      <ion-title>Pages</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -17,3 +17,23 @@
 </ion-menu>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+<script>
+  console.log('Hola Mundo');
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCeQdNeNM-ppKKdDfMf_Bn67fhzhi_1GQ4",
+    authDomain: "angularprueba-55b94.firebaseapp.com",
+    databaseURL: "https://angularprueba-55b94.firebaseio.com",
+    storageBucket: "angularprueba-55b94.appspot.com",
+    messagingSenderId: "120586352780"
+  };
+  firebase.initializeApp(config);
+
+  var root= firebase.database().ref();
+
+  root.on('value',function(snap){
+    console.log(snap.val());
+  });
+</script>

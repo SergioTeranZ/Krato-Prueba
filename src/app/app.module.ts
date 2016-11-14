@@ -8,10 +8,10 @@ import { ListPage } from '../pages/list/list';
 import { KratoPage } from '../pages/krato/krato';
 
 import {ComerciosService} from '../providers/comercios-service';
-import {HTTP_PROVIDERS} from 'angular2/http';
+//import { AngularFireModule } from 'angularfire2/index';
 
 // Import the AF2 Module
-import { FIREBASE_PROVIDERS, defaultFirebase,AngularFire,AuthMethods,AuthProviders,firebaseAuthConfig} from 'angularfire2';
+//import { firebaseConfig } from '../enviroment/firebase.config';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { FIREBASE_PROVIDERS, defaultFirebase,AngularFire,AuthMethods,AuthProvide
   ],
 
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    //AngularFireModule.initializeApp(firebaseConfig)
   ],
 
   bootstrap: [IonicApp],
@@ -36,15 +37,6 @@ import { FIREBASE_PROVIDERS, defaultFirebase,AngularFire,AuthMethods,AuthProvide
   
   providers:[
   	ComerciosService,
-  	FIREBASE_PROVIDERS,
-  	defaultFirebase(
-  		{	apiKey: "AIzaSyCeQdNeNM-ppKKdDfMf_Bn67fhzhi_1GQ4",
-    		authDomain: "angularprueba-55b94.firebaseapp.com",
-    		databaseURL: "https://angularprueba-55b94.firebaseio.com",
-    		storageBucket: "angularprueba-55b94.appspot.com"}),
-  	firebaseAuthConfig({
-  		provider:AuthProviders.Password,
-  		method: AuthMethods.Password
-  	})],
+  	],
 })
 export class AppModule {}
