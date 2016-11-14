@@ -93,11 +93,8 @@ export class KratoPage {
     });
   } // Fin itemTapped
 
-  reorderItems(indexes){
-      this.comercios_json = reorderArray(this.comercios_json, indexes);
-  }
-
   orderMenor(){
+    //this.comerPrueba.
     this.comercios_json.sort(function(a, b) {
       var ratingA = a.rating.toUpperCase();
       var ratingB = b.rating.toUpperCase();
