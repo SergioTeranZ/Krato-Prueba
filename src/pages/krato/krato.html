@@ -6,6 +6,8 @@
 
 <ion-content style="background-color: #ddd;">
 <ion-grid>
+
+  <div *ngFor="let c of comerPrueba | async"> {{ c.nombre }}</div>
   <!-- Barra de Busqueda -->
   <ion-row>
     <ion-col width-50 offset-25 style="text-align:center;">

@@ -109,14 +109,11 @@ export class ComerciosService {
                     }
     ] // fin locales
     var prueba;
-    this.root = firebase.
-    database().
+    this.root = firebase.database().
     ref('comercios').
     on('value',function(snap){
         prueba = snap.val();
       });
-
-    console.log(prueba);
     
   } // Fin constructor
 
