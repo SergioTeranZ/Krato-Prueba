@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 // Import de firebase
 //import { AngularFireModule } from 'angularfire2/index';
 import { firebaseConfig } from '../enviroment/firebase.config';
+import { Observable } from 'rxjs/Observable';
 import {AngularFire} from "angularfire2";
 
 /*
@@ -19,7 +20,7 @@ export class ComerciosService {
 
   locales: any;
   localesJS: any;
-  root: any;
+  root: Observable<any[]>;
 
   constructor(public http: Http,private af: AngularFire) {
 
@@ -108,24 +109,31 @@ export class ComerciosService {
                      "descripcion":"descripcion Mer 2"
                     }
     ] // fin locales
-    var prueba;
-    this.root = firebase.database().
-    ref('comercios').
-    on('value',function(snap){
-        prueba = snap.val();
-      });
+    
+    this.root = af.database.list('comercios');
     
   } // Fin constructor
 
   filtroBusqueda(termino){
-    return this.locales.filter((local) => {
-      return local.nombre.toLowerCase().indexOf(termino.toLowerCase()) > -1 || local.descripcion.toLowerCase().indexOf(termino.toLowerCase()) > -1;
-    });
+
+    
+    // console.log("->"+termino);
+    //this.af.database.list('/comercios/').subscribe(s => {console.log(s)});
+    if (termino){
+      termino = termino.toLowerCase();
+      return this.root.filter((x:any) => x.toLowerCase() === termino );
+    }else{
+      return this.root;
+    }
+    // return this.locales.filter((local) => {
+    //  return local.nombre.toLowerCase().indexOf(termino.toLowerCase()) > -1 || local.descripcion.toLowerCase().indexOf(termino.toLowerCase()) > -1;
+    // });
   } // Fin filtroBusqueda
 
   filtroSector(sector){
-    return this.locales.filter((local) =>{
-      return local.sector.toLowerCase().indexOf(sector.toLowerCase()) > -1;
-    });
+    console.log(this.root);
+    //return this.root.filter(local =>{
+    //  return local.sector.toLowerCase().indexOf(sector.toLowerCase()) > -1;
+    //});
   } // fin filtroSector
 }

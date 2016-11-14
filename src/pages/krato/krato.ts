@@ -40,23 +40,14 @@ export class KratoPage {
     
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-
-    //this.root = firebase.database()
-    //.ref('comercios')
     
+    // Obtener informacion de BD
     this.comerPrueba = af.database.list('comercios');
-
-    this.comerPrueba.subscribe(function(snap){ console.log(snap)});
     
     // Barra de busqueda
     this.controlBusqueda = new FormControl();
   
   } // fin contructor
-  
-  getData(snap){
-    var p = snap.val();
-    return p;
-  }
 
   ionViewDidLoad() {
     this.localesFiltrados();
@@ -74,13 +65,18 @@ export class KratoPage {
 
   localesFiltrados() {
     this.sector = '';
-    this.comercios_json = this.ComerciosService.filtroBusqueda(this.termino);
+    this.comerPrueba = this.ComerciosService.filtroBusqueda(this.termino);
   } // fin localesFiltrados
     
   localesFiltradosSector(termino) {
     this.localesFiltrados();
     this.sector = termino;
-    this.comercios_json = this.ComerciosService.filtroSector(termino);
+
+    if (termino){
+      this.comerPrueba = this.af.database.list('/comercios',{query:{orderByChild: "/sector",equalTo: termino}});
+    }else{
+      this.comerPrueba = this.af.database.list('/comercios');
+    }
   } // fin localesFiltradosSector
 
   getNumber(numero){
